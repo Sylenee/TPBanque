@@ -14,10 +14,10 @@
 ## Base de donnée
 
 ### Acces
-Url :   localhost
-base :  assurance
-user :  assurance
-mdp :   assurance
+- Url :   localhost
+- base :  assurance
+- user :  assurance
+- mdp :   assurance
 
 ### Tables
 
