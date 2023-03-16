@@ -1,5 +1,7 @@
 package isen.group1.api.assurance.data.entity;
 
+import isen.group1.api.assurance.model.dto.ContratDTO;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -79,5 +81,15 @@ public class ContratEntity implements Serializable {
 
     public void setDateFin(Timestamp dateFin) {
         this.dateFin = dateFin;
+    }
+
+    public ContratDTO toDto() {
+        ContratDTO contratDTO = new ContratDTO();
+        contratDTO.setId(getId());
+        contratDTO.setMensualite(getMensualite());
+        contratDTO.setType(getType());
+        contratDTO.setDateDebut(getDateDebut());
+        contratDTO.setDateFin(getDateFin());
+        return contratDTO;
     }
 }
