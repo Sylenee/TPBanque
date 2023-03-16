@@ -94,4 +94,10 @@ public class ConseillerServiceImpl implements ConseillerService {
 
     }
 
+    @Override
+    public ClientDTO ajouterClient(ClientDTO clientDTO) {
+        Integer idConseiller = clientDTO.getIdConseiller();
+        return this.clientRepository.save(clientDTO.toEntity()).toDto();
+    }
+
 }
