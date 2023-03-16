@@ -50,4 +50,17 @@ public class ConseillerServiceImpl implements ConseillerService {
         return this.contratRepository.save(contrat.toEntity()).toDto();
     }
 
+    @Override
+    public ContratDTO updateContrat(ContratDTO contrat) {
+        ContratDTO contratDTO = new ContratDTO();
+        if (this.contratRepository.findById(contrat.getId()).isPresent() ) {
+            contratDTO = this.contratRepository.findById(contrat.getId()).get().toDto();
+        }
+        contratDTO.setId(contrat.getId());
+        contratDTO.setMensualite(contrat.getMensualite());
+        contratDTO.setDateDebut(contrat.getDateDebut());
+        contratDTO.setDateFin(contrat.getDateFin());
+        contratDTO.setType(contrat.getType());
+        return this.contratRepository.save(contratDTO.toEntity()).toDto();    }
+
 }

@@ -37,9 +37,11 @@ public class ConseillerController {
         return conseillerService.updateClient(i);
     }
 
-    @PutMapping("/modifier/contrat/{i}")
-    public ResponseEntity<ContratDTO> updateContrat(@RequestBody ContratDTO contrat, @PathVariable("contrat_id") Integer contratId) {
-        this.conseillerService.updateContrat(contratId, contrat);
+    @PutMapping("/modifier/contrat/{idcontrat}")
+    public ResponseEntity<ContratDTO> updateContrat(@RequestBody ContratDTO contrat, @PathVariable("idcontrat") Integer idcontrat) {
+        contrat.setId(idcontrat);
+        ContratDTO contratDTO = this.conseillerService.updateContrat(contrat);
+        //this.conseillerService.updateContrat(contratId, contrat);
         return ResponseEntity.status(HttpStatus.OK).body(contrat);
     }
 
