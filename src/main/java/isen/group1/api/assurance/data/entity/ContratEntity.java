@@ -1,9 +1,8 @@
 package isen.group1.api.assurance.data.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import isen.group1.api.assurance.model.dto.ContratDTO;
+
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -15,7 +14,7 @@ public class ContratEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "mensualite")
@@ -26,17 +25,28 @@ public class ContratEntity implements Serializable {
     private Timestamp dateDebut;
     @Column(name = "dateFin")
     private Timestamp dateFin;
+    @Column(name ="id_client")
+    private int clientId;
+
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
 
     public ContratEntity() {
         // Constructeur par défaut
     }
 
-    public ContratEntity(int id, float mensualite, String type, Timestamp dateDebut, Timestamp dateFin) {
+    public ContratEntity(int id, float mensualite, String type, Timestamp dateDebut, Timestamp dateFin, int clientId) {
         this.id = id;
         this.mensualite = mensualite;
         this.type = type;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
+        this.clientId = clientId;
     }
 
     // Getters et Setters pour chaque attribut
@@ -79,5 +89,16 @@ public class ContratEntity implements Serializable {
 
     public void setDateFin(Timestamp dateFin) {
         this.dateFin = dateFin;
+    }
+
+    public ContratDTO toDto() {
+        ContratDTO contratDTO = new ContratDTO();
+        contratDTO.setId(getId());
+        contratDTO.setMensualite(getMensualite());
+        contratDTO.setType(getType());
+        contratDTO.setDateDebut(getDateDebut());
+        contratDTO.setDateFin(getDateFin());
+        contratDTO.setIdClient(getClientId());
+        return contratDTO;
     }
 }
