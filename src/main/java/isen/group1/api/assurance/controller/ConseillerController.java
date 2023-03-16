@@ -26,7 +26,7 @@ public class ConseillerController {
     }
 
     @DeleteMapping("/{idConseiller}/supprimer/client/{idClient}")
-    public ResponseEntity<Object> createClient(@PathVariable("idConseiller")Integer idConseiller, @PathVariable("idClient")Integer idClient) {
+    public ResponseEntity<Object> deleteClient(@PathVariable("idConseiller")Integer idConseiller, @PathVariable("idClient")Integer idClient) {
         conseillerService.deleteClient(idConseiller, idClient);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
@@ -37,17 +37,17 @@ public class ConseillerController {
         return ResponseEntity.status(HttpStatus.OK).body(clientModif);
     }
 
-    @PutMapping("/modifier/contrat/{idcontrat}")
-    public ResponseEntity<ContratDTO> updateContrat(@RequestBody ContratDTO contrat, @PathVariable("idcontrat") Integer idcontrat) {
+    @PutMapping("{idconseiller}/modifier/contrat/{idcontrat}")
+    public ResponseEntity<ContratDTO> updateContrat(@RequestBody ContratDTO contrat, @PathVariable("idcontrat") Integer idcontrat,@PathVariable("idconseiller") Integer idConseiller) {
         contrat.setId(idcontrat);
-        ContratDTO contratDTO = this.conseillerService.updateContrat(contrat);
+        ContratDTO contratDTO = this.conseillerService.updateContrat(idcontrat, contrat, idConseiller);
         return ResponseEntity.status(HttpStatus.OK).body(contrat);
     }
 
-    @PostMapping("/ajouter/contrat/{idclient}")
-    public ResponseEntity<ContratDTO> ajouterContrat(@RequestBody ContratDTO contrat, @PathVariable("idclient") Integer idclient) {
+    @PostMapping("{idconseiller}/ajouter/contrat/{idclient}")
+    public ResponseEntity<ContratDTO> ajouterContrat(@RequestBody ContratDTO contrat, @PathVariable("idclient") Integer idclient,@PathVariable("idconseiller") Integer idConseiller) {
         contrat.setIdClient(idclient);
-        ContratDTO contratDTO = this.conseillerService.ajouterContrat(contrat);
+        ContratDTO contratDTO = this.conseillerService.ajouterContrat(contrat, idConseiller);
         contrat = contratDTO;
         return ResponseEntity.status(HttpStatus.CREATED).body(contrat);
     }

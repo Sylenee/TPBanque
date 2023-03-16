@@ -4,11 +4,6 @@ import java.io.Serializable;
 import isen.group1.api.assurance.data.entity.ClientEntity;
 import isen.group1.api.assurance.data.entity.ContratEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 
 
 
