@@ -21,14 +21,14 @@ public class ClientRepository implements ClientRepositoryInterface{
 
 	@Override
 	public List<ContratDTO> getAllContratsFromClientID(int id){
-		String sql = "Select * from contrat WHERE id_client=\""+id+"\"";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<ContratDTO>(ContratDTO.class));
+		String sql = "Select * from contrat WHERE id_client=?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<ContratDTO>(ContratDTO.class), id);
 	}
 	
 	@Override
 	public ContratDTO getOneContratFromClientID(int idClient, int idContrat){
-		String sql = "Select * from contrat WHERE id_client=\""+idClient+"\" AND id=\""+idContrat+"\"";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<ContratDTO>(ContratDTO.class)).get(0);
+		String sql = "Select * from contrat WHERE id_client=? AND id=?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<ContratDTO>(ContratDTO.class), idClient, idContrat).get(0);
 	}
 
 }
