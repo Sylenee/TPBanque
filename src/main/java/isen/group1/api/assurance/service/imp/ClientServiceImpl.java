@@ -2,6 +2,7 @@ package isen.group1.api.assurance.service.imp;
 
 import isen.group1.api.assurance.data.repository.ClientRepository;
 import isen.group1.api.assurance.model.dto.ClientDTO;
+import isen.group1.api.assurance.model.dto.ContratDTO;
 import isen.group1.api.assurance.service.ClientService;
 
 import java.util.List;
@@ -21,14 +22,14 @@ public class ClientServiceImpl implements ClientService {
 		return this.clientRepository.nombreDePersonne();
 	}
 
-	/*@Override
-	public List<ClientDTO> getListeClient() {
-		return this.clientRepository.findAll().stream().map(ClientDTO::new).collect(Collectors.toList());
-	}*/
+	public ClientDTO getClient(Integer id) {
+		return this.clientRepository.getClient(id);
+	}
 
-	/*@Override
-	public void ajouterClient(ClientDTO client) {
-		this.clientRepository.save(client.toEntity());
-	}*/
+	@Override
+	public List<ContratDTO> getClientContrats() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
