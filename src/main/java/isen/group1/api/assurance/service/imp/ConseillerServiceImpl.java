@@ -1,7 +1,7 @@
 package isen.group1.api.assurance.service.imp;
 
+import isen.group1.api.assurance.data.entity.ClientEntity;
 import isen.group1.api.assurance.data.repository.ClientRepository;
-import isen.group1.api.assurance.data.repository.ConseillerRepository;
 import isen.group1.api.assurance.data.repository.ContratRepository;
 import isen.group1.api.assurance.model.dto.ClientDTO;
 import isen.group1.api.assurance.model.dto.ContratDTO;
@@ -9,7 +9,8 @@ import isen.group1.api.assurance.service.ConseillerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.io.Console;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,8 +25,11 @@ public class ConseillerServiceImpl implements ConseillerService {
 
     @Override
     public List<ClientDTO> getListClient(int idConseiller) {
-        return this.client.findByIdConseiller(idConseiller);
-
+        List<ClientDTO> testss = new ArrayList<>();
+        for(ClientEntity c:this.client.findAll()){
+            testss.add(c.toDto());
+        }
+        return testss;
     }
 
     @Override

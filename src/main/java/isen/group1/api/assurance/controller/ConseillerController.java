@@ -13,27 +13,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/conseillers/{idConseiller}")
+@RequestMapping("/conseillers")
 @AllArgsConstructor
 public class ConseillerController {
 
     @Autowired
         private ConseillerService conseillerService;
 
-    @GetMapping("/listClient")
-    public List<ClientDTO> getListClient(int idConseiller) {
+    @GetMapping("/{idConseiller}/listClient")
+    public List<ClientDTO> getListClient(@PathVariable("idConseiller")Integer idConseiller) {
         return conseillerService.getListClient(idConseiller);
     }
 
-    @PostMapping("/supprimer/client/{i}")
-    public ResponseEntity.BodyBuilder createClient(int idConseiller, int idClient) {
+    @DeleteMapping("/{idConseiller}/supprimer/client/{idClient}")
+    public ResponseEntity<Object> createClient(@PathVariable("idConseiller")Integer idConseiller, @PathVariable("idClient")Integer idClient) {
         conseillerService.deleteClient(idConseiller, idClient);
-        return ResponseEntity.status(HttpStatus.CREATED);
-
+        return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/modifier/client/{i}")
-    public ResponseEntity<ClientDTO> updateClient(int idConseiller, ClientDTO clientModif, int idClient) {
+    @PutMapping("/{idConseiller}/modifier/client/{idClient}")
+    public ResponseEntity<ClientDTO> updateClient(@PathVariable("idConseiller")Integer idConseiller, @RequestBody ClientDTO clientModif,@PathVariable("idClient") Integer idClient) {
         conseillerService.updateClient(idConseiller, clientModif, idClient);
         return ResponseEntity.status(HttpStatus.OK).body(clientModif);
     }

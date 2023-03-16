@@ -18,7 +18,7 @@ public class ClientEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Column(name = "id")
 	@Id
-	private Integer id;
+	private int id;
 	@Column(name = "nom")
 	private String nom;
 	@Column(name = "prenom")
@@ -28,7 +28,7 @@ public class ClientEntity implements Serializable {
 
 	private String adresse;
 	@Column(name = "id_conseiller")
-	private Integer idConseiller;
+	private int idConseiller = -1;
 
 	/**
 	 * @return the id

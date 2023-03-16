@@ -16,7 +16,7 @@ public class ConseillerEntity {
 
     @Id
     @Column(name = "id")
-    private Integer idConseiller;
+    private int idConseiller = -1;
 
     @Column(name = "nom")
     private String nom;
