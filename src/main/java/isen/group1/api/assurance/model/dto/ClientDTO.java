@@ -1,12 +1,12 @@
 package isen.group1.api.assurance.model.dto;
 
 import java.io.Serializable;
-
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Repository;
-
 import isen.group1.api.assurance.data.entity.ClientEntity;
 
 @Repository
+@EnableAspectJAutoProxy
 public class ClientDTO implements Serializable {
 
 	/**
@@ -19,8 +19,10 @@ public class ClientDTO implements Serializable {
 	private String adresse;
 	private int idConseiller;
 
+	public ClientDTO() {
+
+	}
 	public ClientDTO(int id, String nom, String prenom, String adresse, int idConseiller) {
-		System.out.println("test 4 + id = "+ id);
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
