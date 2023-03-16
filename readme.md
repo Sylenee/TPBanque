@@ -3,13 +3,13 @@
 ## Contributeurs
 
 
-| Nom Prénom        | classe  |
-|-------------------|---------|
-| Morreau Sylène    | M2-GL   |
-| Gouyet Thomas     | M2-GL   |
-| Lidstorm Henrick  | M2-GL   |
-| Guillarmou Mathis | CIPA-GL |
-| Le Duot Nathan    | CIPA-GL |
+| Nom Prénom         | classe  |
+|--------------------|---------|
+| Morreau Sylène     | M2-GL   |
+| Gouyet Thomas      | M2-GL   |
+| Lidstrom Henrik    | M2-GL   |
+| Guillarmou Mathis  | CIPA-GL |
+| Le Duot Nathan     | CIPA-GL |
 
 ## Base de donnée
 
