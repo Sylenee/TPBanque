@@ -22,7 +22,7 @@ public class ClientServiceImpl implements ClientService {
 		return this.clientRepository.nombreDePersonne();
 	}
 
-	public ClientDTO getClient(Integer id) {
+	public ClientDTO getClient(int id) {
 		return this.clientRepository.getClient(id);
 	}
 
