@@ -44,6 +44,14 @@ public class ConseillerController {
         return ResponseEntity.status(HttpStatus.OK).body(contrat);
     }
 
+    @PostMapping("ajouter/client/{idconseiller}")
+    public ResponseEntity<ClientDTO> ajouterClient(@RequestBody ClientDTO client, @PathVariable("idconseiller") Integer idconseiller) {
+        client.setIdConseiller(idconseiller);
+        ClientDTO clientDTO = this.conseillerService.ajouterClient(client);
+        client = clientDTO;
+        return ResponseEntity.status(HttpStatus.CREATED).body(client);
+    }
+
     @PostMapping("/ajouter/contrat/{idclient}")
     public ResponseEntity<ContratDTO> ajouterContrat(@RequestBody ContratDTO contrat, @PathVariable("idclient") Integer idclient) {
         contrat.setIdClient(idclient);

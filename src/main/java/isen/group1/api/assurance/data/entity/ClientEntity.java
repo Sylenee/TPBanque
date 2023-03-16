@@ -17,7 +17,7 @@ public class ClientEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Column(name = "id")
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "nom")
 	private String nom;

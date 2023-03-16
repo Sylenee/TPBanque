@@ -39,7 +39,6 @@ public class ClientDTO implements Serializable {
 
     public ClientEntity toEntity(){
 		ClientEntity clientEntity = new ClientEntity();
-		clientEntity.setId(id);
 		clientEntity.setNom(nom);
 		clientEntity.setPrenom(prenom);
 		clientEntity.setAdresse(adresse);

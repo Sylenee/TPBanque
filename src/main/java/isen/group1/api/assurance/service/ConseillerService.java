@@ -13,10 +13,7 @@ public interface ConseillerService {
     public void deleteClient(int idConseiller, int idClient);
     public void updateClient(int idConseiller, ClientDTO clientModif, int idClient);
     public List<ClientDTO> getListClientFromConseiller(int idConseiller);
-
-    public ContratDTO updateContrat(Integer contratId, ContratDTO contrat);
     public ContratDTO ajouterContrat(ContratDTO contrat);
-    public ContratDTO ajouterContrat(Integer clientId, ContratDTO contratDTO);
-
-    ContratDTO updateContrat(ContratDTO contrat);
+    public ContratDTO updateContrat(ContratDTO contrat);
+    public ClientDTO ajouterClient(ClientDTO clientDTO);
 }

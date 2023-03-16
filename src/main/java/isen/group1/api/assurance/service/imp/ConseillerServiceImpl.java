@@ -68,25 +68,7 @@ public class ConseillerServiceImpl implements ConseillerService {
     }
 
     @Override
-    public ContratDTO updateContrat(Integer contratId, ContratDTO contrat) {
-        ContratDTO contratDTO = new ContratDTO();
-        if (this.contratRepository.findById(contratId).isPresent() && contratId.equals(contrat.getId())) {
-            contratDTO = this.contratRepository.findById(contratId).get().toDto();
-        }
-        contratDTO.setId(contrat.getId());
-        contratDTO.setMensualite(contrat.getMensualite());
-        contratDTO.setDateDebut(contrat.getDateDebut());
-        contratDTO.setDateFin(contrat.getDateFin());
-        return this.contratRepository.save(contratDTO.toEntity()).toDto();
-    }
-
-    @Override
     public ContratDTO ajouterContrat(ContratDTO contrat) {
-        return this.contratRepository.save(contrat.toEntity()).toDto();
-    }
-
-    @Override
-    public ContratDTO ajouterContrat(Integer clientId, ContratDTO contrat) {
         return this.contratRepository.save(contrat.toEntity()).toDto();
     }
 
@@ -102,5 +84,11 @@ public class ConseillerServiceImpl implements ConseillerService {
         contratDTO.setDateFin(contrat.getDateFin());
         contratDTO.setType(contrat.getType());
         return this.contratRepository.save(contratDTO.toEntity()).toDto();    }
+
+    @Override
+    public ClientDTO ajouterClient(ClientDTO clientDTO) {
+        Integer idConseiller = clientDTO.getIdConseiller();
+        return this.clientRepository.save(clientDTO.toEntity()).toDto();
+    }
 
 }
