@@ -45,4 +45,9 @@ public class ConseillerServiceImpl implements ConseillerService {
         return this.contratRepository.save(contrat.toEntity()).toDto();
     }
 
+    @Override
+    public ContratDTO ajouterContrat(Integer clientId, ContratDTO contrat) {
+        return this.contratRepository.save(contrat.toEntity()).toDto();
+    }
+
 }

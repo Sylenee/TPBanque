@@ -9,17 +9,28 @@ import java.sql.Timestamp;
 public class ContratDTO implements Serializable {
 
     private Integer id;
+
+    public Integer getIdClient() {
+        return idClient;
+    }
+
+    public void setIdClient(Integer idClient) {
+        this.idClient = idClient;
+    }
+
     private float mensualite;
     private String type;
     private Timestamp dateDebut;
     private Timestamp dateFin;
+    private Integer idClient;
 
-    public ContratDTO(Integer id, float mensualite, String type, Timestamp dateDebut, Timestamp dateFin) {
+    public ContratDTO(Integer id, float mensualite, String type, Timestamp dateDebut, Timestamp dateFin, Integer idClient) {
         this.id = id;
         this.mensualite = mensualite;
         this.type = type;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
+        this.idClient = idClient;
     }
 
     public ContratDTO() {
@@ -68,11 +79,14 @@ public class ContratDTO implements Serializable {
 
     public ContratEntity toEntity() {
         ContratEntity contratEntity = new ContratEntity();
-        contratEntity.setId(id);
+        if (id != null) {
+            contratEntity.setId(id);
+        }
         contratEntity.setMensualite(mensualite);
         contratEntity.setType(type);
         contratEntity.setDateDebut(dateDebut);
         contratEntity.setDateFin(dateFin);
+        contratEntity.setClientId(idClient);
         return contratEntity;
     }
 }

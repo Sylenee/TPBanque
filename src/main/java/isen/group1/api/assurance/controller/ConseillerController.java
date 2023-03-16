@@ -20,7 +20,7 @@ import java.util.List;
 public class ConseillerController {
 
     @Autowired
-    private ConseillerService conseillerService;
+        private ConseillerService conseillerService;
 
     @GetMapping("/listClient")
     public List<ClientDTO> getListClient() {
@@ -43,11 +43,14 @@ public class ConseillerController {
         return ResponseEntity.status(HttpStatus.OK).body(contrat);
     }
 
-    @PostMapping("/ajouter/contrat/{i}")
-    public ResponseEntity<ContratDTO> ajouterContrat(@RequestBody ContratDTO contrat) {
+    @PostMapping("/ajouter/contrat/{idclient}")
+    public ResponseEntity<ContratDTO> ajouterContrat(@RequestBody ContratDTO contrat, @PathVariable("idclient") Integer idclient) {
         // Ajouter le contrat dans la base de donnée
+        // Id client à fournir en paramètre
         // Renvoie une réponse 201 created avec le contrat créé dans la réponse
-        this.conseillerService.ajouterContrat(contrat);
+        contrat.setIdClient(idclient);
+        ContratDTO contratDTO = this.conseillerService.ajouterContrat(contrat);
+        contrat = contratDTO;
         return ResponseEntity.status(HttpStatus.CREATED).body(contrat);
     }
 }

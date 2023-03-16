@@ -13,4 +13,5 @@ public interface ConseillerService {
     public ClientDTO updateClient(int i);
     public ContratDTO updateContrat(Integer contratId, ContratDTO contrat);
     public ContratDTO ajouterContrat(ContratDTO contrat);
+    public ContratDTO ajouterContrat(Integer clientId, ContratDTO contratDTO);
     }
