@@ -18,10 +18,10 @@ INSERT INTO client(id, nom, prenom, adresse, id_contrat)
 
 INSERT INTO conseiller(id, nom, prenom)
     ->VALUES
-    ->('Martin','Pierre',1)
-    ->('Dubois','Marie',1)
-    ->('Leroy','Antoine',1)
-    ->('Chevalier','Emmanuelle',1)
+    ->('1','Martin','Pierre')
+    ->('2','Dubois','Marie')
+    ->('3','Leroy','Antoine')
+    ->('4','Chevalier','Emmanuelle')
 ;
 
 INSERT INTO contrat(id, mensualite, type, date_debut, date_fin, id_client)
@@ -33,5 +33,6 @@ INSERT INTO contrat(id, mensualite, type, date_debut, date_fin, id_client)
     ->('5','750','Abonnement','2022-05-12 13:20:00','2022-11-11 13:20:00','4')
     ->('6','2000','Abonnement','2022-06-15 16:00:00','2023-06-15 16:00:00','5')
     ->('7','400','Abonnement','2022-07-20 11:10:00','2023-01-19 11:10:00','6')
+    ->('8','550','emprun','2022-07-20 11:20:00','2033-01-19 11:20:00','7')
 ;
 
