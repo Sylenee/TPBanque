@@ -98,12 +98,12 @@ public class ClientEntity implements Serializable {
 	}
 
 	public ClientDTO toDto() {
-		ClientDTO contratDTO = new ClientDTO();
-		contratDTO.setIdConseiller(getIdConseiller());
-		contratDTO.setNom(getNom());
-		contratDTO.setPrenom(getPrenom());
-		contratDTO.setId(getId());
-		contratDTO.setAdresse(getAdresse());
-		return contratDTO;
+		ClientDTO clientDTO = new ClientDTO();
+		clientDTO.setIdConseiller(getIdConseiller());
+		clientDTO.setNom(getNom());
+		clientDTO.setPrenom(getPrenom());
+		clientDTO.setId(getId());
+		clientDTO.setAdresse(getAdresse());
+		return clientDTO;
 	}
 }

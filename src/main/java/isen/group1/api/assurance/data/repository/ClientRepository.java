@@ -6,6 +6,9 @@ import isen.group1.api.assurance.model.dto.ClientDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface ClientRepository  extends JpaRepository<ClientDTO, Integer> {
+public interface ClientRepository  extends JpaRepository<ClientEntity, Integer> {
+    List<ClientDTO> findByIdConseiller(int idConseiller);
 }

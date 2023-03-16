@@ -18,7 +18,7 @@ public class ConseillerServiceImpl implements ConseillerService {
     @Autowired
     private ContratRepository contratRepository;
     @Autowired
-    private ConseillerRepository client;
+    private ClientRepository client;
 
 
 
