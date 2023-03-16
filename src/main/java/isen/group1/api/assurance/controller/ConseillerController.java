@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/conseillers")
+@RequestMapping("/conseiller")
 @AllArgsConstructor
 public class ConseillerController {
 
     @Autowired
-        private ConseillerService conseillerService;
+    private ConseillerService conseillerService;
 
     @GetMapping("/{idConseiller}/listClient")
-    public List<ClientDTO> getListClient(@PathVariable("idConseiller")Integer idConseiller) {
-        return conseillerService.getListClient(idConseiller);
+    public ResponseEntity<List<ClientDTO>> getListClient(@PathVariable("idConseiller")Integer idConseiller) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(conseillerService.getListClient(idConseiller));
     }
 
     @DeleteMapping("/{idConseiller}/supprimer/client/{idClient}")

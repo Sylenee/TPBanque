@@ -2,6 +2,7 @@ package isen.group1.api.assurance.model.dto;
 
 import java.io.Serializable;
 import isen.group1.api.assurance.data.entity.ClientEntity;
+import isen.group1.api.assurance.data.entity.ContratEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,7 +36,8 @@ public class ClientDTO implements Serializable {
 		this.idConseiller = clientEntity.getIdConseiller();
 	}
 
-	public ClientEntity toEntity(){
+
+    public ClientEntity toEntity(){
 		ClientEntity clientEntity = new ClientEntity();
 		clientEntity.setId(id);
 		clientEntity.setNom(nom);

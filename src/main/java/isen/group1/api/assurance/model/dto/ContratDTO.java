@@ -10,6 +10,24 @@ public class ContratDTO implements Serializable {
 
     private Integer id;
 
+    public ContratDTO(ContratEntity contratEntity) {
+        ContratDTO contratDTO = new ContratDTO();
+        /*
+        contratDTO.setId(contratEntity.getId());
+        contratDTO.setMensualite(contratEntity.getMensualite());
+        contratDTO.setType(contratEntity.getType());
+        contratDTO.setDateDebut(contratEntity.getDateDebut());
+        contratDTO.setDateFin(contratEntity.getDateFin());
+        contratDTO.setIdClient(contratEntity.getClientId());
+        return contratDTO;*/
+        this.id = contratEntity.getId();
+        this.mensualite = contratEntity.getMensualite();
+        this.type = contratEntity.getType();
+        this.dateDebut = contratEntity.getDateDebut();
+        this.dateFin = contratEntity.getDateFin();
+        this.idClient = contratEntity.getClientId();
+    }
+
     public Integer getIdClient() {
         return idClient;
     }

@@ -9,9 +9,12 @@ import isen.group1.api.assurance.service.ConseillerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ConseillerServiceImpl implements ConseillerService {
@@ -19,17 +22,24 @@ public class ConseillerServiceImpl implements ConseillerService {
     @Autowired
     private ContratRepository contratRepository;
     @Autowired
-    private ClientRepository client;
-
-
+    private ClientRepository clientRepository;
 
     @Override
     public List<ClientDTO> getListClient(int idConseiller) {
-        List<ClientDTO> testss = new ArrayList<>();
-        for(ClientEntity c:this.client.findAll()){
-            testss.add(c.toDto());
+        return this.clientRepository.findByIdConseiller(idConseiller);
+    }
+
+    @Override
+    public List<ClientDTO> getListClientFromConseiller(int idConseiller) {
+        List<ClientDTO> resultList = new ArrayList<>();
+        List<ClientDTO> clientDTOList = this.clientRepository.findAll().stream().map(ClientDTO::new).collect(Collectors.toList());
+        for (ClientDTO clientDTO : clientDTOList
+             ) {
+            if (clientDTO.getIdConseiller() == idConseiller) {
+                resultList.add(clientDTO);
+            }
         }
-        return testss;
+        return resultList;
     }
 
     @Override
@@ -37,7 +47,7 @@ public class ConseillerServiceImpl implements ConseillerService {
         List<ClientDTO> listClientConseille = getListClient(idConseiller);
         for (ClientDTO c : listClientConseille) {
             if (c.getId() == idClient)
-                this.client.deleteById(idClient);
+                this.clientRepository.deleteById(idClient);
         }
     }
 
@@ -46,13 +56,13 @@ public class ConseillerServiceImpl implements ConseillerService {
         List<ClientDTO> listClientConseille = getListClient(idConseiller);
         for (ClientDTO c : listClientConseille) {
             if (c.getId() == idClient)
-                this.client.findById(idClient)
+                this.clientRepository.findById(idClient)
                         .map(p -> {
                             p.setIdConseiller(clientModif.getIdConseiller());
                             p.setAdresse(clientModif.getAdresse());
                             p.setNom(clientModif.getNom());
                             p.setPrenom(clientModif.getPrenom());
-                            return this.client.save(p);
+                            return this.clientRepository.save(p);
                         });
         }
     }
