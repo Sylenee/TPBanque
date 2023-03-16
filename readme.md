@@ -39,4 +39,3 @@
 - type       Varchar (50)
 - date_debut Datetime
 - date_fin   Datetime
-- id_client Int
