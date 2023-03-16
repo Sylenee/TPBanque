@@ -24,5 +24,7 @@ INSERT INTO conseiller(id, nom, prenom)
     ->('Chevalier','Emmanuelle',1)
 ;
 
-
+INSERT INTO contrat(id, mensualite, type, date_debut, date_fin, id_client)
+    ->VALUES
+    ->('1','1000','emprunt','1990-4-9','2020-4-9','1')
 
