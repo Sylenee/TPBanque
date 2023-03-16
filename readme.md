@@ -26,13 +26,12 @@
 - nom        Varchar (100)
 - prenom     Varchar (50)
 - adresse    Varchar (200)
-- id_contrat Int
+- id_client Int
 
 **Conseiller**
 - id        Int  Auto_increment
 - nom       Varchar (100)
 - prenom    Varchar (50)
-- id_client Int
 
 **contrat**
 - id         Int  Auto_increment
@@ -40,3 +39,4 @@
 - type       Varchar (50)
 - date_debut Datetime
 - date_fin   Datetime
+- id_client Int
