@@ -15,11 +15,16 @@ public class ClientServiceImpl implements ClientService {
 
 	@Autowired
 	private ClientRepository clientRepository;
-	
+
 	@Override
 	public Integer nombreDePersonne() {
-		return this.clientRepository.nombreDePersonne();
+		return null;
 	}
+	
+	/*@Override
+	public Integer nombreDePersonne() {
+		return this.clientRepository.nombreDePersonne();
+	}*/
 
 	/*@Override
 	public List<ClientDTO> getListeClient() {

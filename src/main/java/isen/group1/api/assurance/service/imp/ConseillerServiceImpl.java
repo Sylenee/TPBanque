@@ -1,5 +1,7 @@
 package isen.group1.api.assurance.service.imp;
 
+import isen.group1.api.assurance.data.repository.ClientRepository;
+import isen.group1.api.assurance.data.repository.ConseillerRepository;
 import isen.group1.api.assurance.data.repository.ContratRepository;
 import isen.group1.api.assurance.model.dto.ClientDTO;
 import isen.group1.api.assurance.model.dto.ContratDTO;
@@ -7,6 +9,7 @@ import isen.group1.api.assurance.service.ConseillerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -14,17 +17,40 @@ public class ConseillerServiceImpl implements ConseillerService {
 
     @Autowired
     private ContratRepository contratRepository;
+    @Autowired
+    private ConseillerRepository client;
 
-    public List<ClientDTO> getListClient() {
-        return null;
+
+
+    @Override
+    public List<ClientDTO> getListClient(int idConseiller) {
+        return this.client.findByIdConseiller(idConseiller);
+
     }
 
-    public String deleteClient(int i) {
-        return null;
+    @Override
+    public void deleteClient(int idConseiller, int idClient) {
+        List<ClientDTO> listClientConseille = getListClient(idConseiller);
+        for (ClientDTO c : listClientConseille) {
+            if (c.getId() == idClient)
+                this.client.deleteById(idClient);
+        }
     }
 
-    public ClientDTO updateClient(int i) {
-        return null;
+    @Override
+    public void updateClient(int idConseiller, ClientDTO clientModif, int idClient) {
+        List<ClientDTO> listClientConseille = getListClient(idConseiller);
+        for (ClientDTO c : listClientConseille) {
+            if (c.getId() == idClient)
+                this.client.findById(idClient)
+                        .map(p -> {
+                            p.setIdConseiller(clientModif.getIdConseiller());
+                            p.setAdresse(clientModif.getAdresse());
+                            p.setNom(clientModif.getNom());
+                            p.setPrenom(clientModif.getPrenom());
+                            return this.client.save(p);
+                        });
+        }
     }
 
     @Override

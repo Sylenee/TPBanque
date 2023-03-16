@@ -3,19 +3,27 @@ package isen.group1.api.assurance.model.dto;
 import java.io.Serializable;
 import isen.group1.api.assurance.data.entity.ClientEntity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+
 
 public class ClientDTO implements Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String nom;
+
 	private String prenom;
+
 	private String adresse;
 	private Integer idConseiller;
-
 	public ClientDTO() {
 		super();
 	}
@@ -98,7 +106,6 @@ public class ClientDTO implements Serializable {
 	public void setAdresse(final String adresse) {
 		this.adresse = adresse;
 	}
-	
 	@Override
 	public String toString() {
 		return "ClientDTO [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse

@@ -3,9 +3,9 @@ package isen.group1.api.assurance.model.dto;
 import isen.group1.api.assurance.data.entity.ContratEntity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
-
 public class ContratDTO implements Serializable {
 
     private Integer id;

@@ -1,11 +1,9 @@
 package isen.group1.api.assurance.controller;
 
 
-import isen.group1.api.assurance.data.entity.ClientEntity;
 import isen.group1.api.assurance.model.dto.ClientDTO;
 import isen.group1.api.assurance.model.dto.ContratDTO;
 import isen.group1.api.assurance.service.ConseillerService;
-import isen.group1.api.assurance.service.imp.ConseillerServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/conseiller")
+@RequestMapping("/conseillers/{idConseiller}")
 @AllArgsConstructor
 public class ConseillerController {
 
@@ -23,18 +21,21 @@ public class ConseillerController {
         private ConseillerService conseillerService;
 
     @GetMapping("/listClient")
-    public List<ClientDTO> getListClient() {
-        return conseillerService.getListClient();
+    public List<ClientDTO> getListClient(int idConseiller) {
+        return conseillerService.getListClient(idConseiller);
     }
 
     @PostMapping("/supprimer/client/{i}")
-    public String createClient(int i) {
-        return conseillerService.deleteClient(i);
+    public ResponseEntity.BodyBuilder createClient(int idConseiller, int idClient) {
+        conseillerService.deleteClient(idConseiller, idClient);
+        return ResponseEntity.status(HttpStatus.CREATED);
+
     }
 
     @PutMapping("/modifier/client/{i}")
-    public ClientDTO updateClient(int i) {
-        return conseillerService.updateClient(i);
+    public ResponseEntity<ClientDTO> updateClient(int idConseiller, ClientDTO clientModif, int idClient) {
+        conseillerService.updateClient(idConseiller, clientModif, idClient);
+        return ResponseEntity.status(HttpStatus.OK).body(clientModif);
     }
 
     @PutMapping("/modifier/contrat/{idcontrat}")

@@ -1,19 +1,33 @@
 package isen.group1.api.assurance.data.entity;
 
 import java.io.Serializable;
+
+import isen.group1.api.assurance.model.dto.ClientDTO;
+import isen.group1.api.assurance.model.dto.ConseillerDTO;
 import org.springframework.stereotype.Repository;
 
-@Repository
+import javax.persistence.*;
+
+@Table(name = "client")
+@Entity
 public class ClientEntity implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Column(name = "id")
+	@Id
 	private Integer id;
+	@Column(name = "nom")
 	private String nom;
+	@Column(name = "prenom")
+
 	private String prenom;
+	@Column(name = "adresse")
+
 	private String adresse;
+	@Column(name = "id_conseiller")
 	private Integer idConseiller;
 
 	/**
@@ -83,4 +97,13 @@ public class ClientEntity implements Serializable {
 		this.adresse = adresse;
 	}
 
+	public ClientDTO toDto() {
+		ClientDTO contratDTO = new ClientDTO();
+		contratDTO.setIdConseiller(getIdConseiller());
+		contratDTO.setNom(getNom());
+		contratDTO.setPrenom(getPrenom());
+		contratDTO.setId(getId());
+		contratDTO.setAdresse(getAdresse());
+		return contratDTO;
+	}
 }
