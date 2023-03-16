@@ -4,16 +4,14 @@
 
 
 #------------------------------------------------------------
-# Table: contrat
+# Table: conseiller
 #------------------------------------------------------------
 
-CREATE TABLE contrat(
-        id         Int  Auto_increment  NOT NULL ,
-        mensualite Float NOT NULL ,
-        type       Varchar (50) NOT NULL ,
-        date_debut Datetime NOT NULL ,
-        date_fin   Datetime NOT NULL
-	,CONSTRAINT contrat_PK PRIMARY KEY (id)
+CREATE TABLE conseiller(
+        id     Int  Auto_increment  NOT NULL ,
+        nom    Varchar (100) NOT NULL ,
+        prenom Varchar (50) NOT NULL
+	,CONSTRAINT conseiller_PK PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
@@ -22,28 +20,30 @@ CREATE TABLE contrat(
 #------------------------------------------------------------
 
 CREATE TABLE client(
-        id         Int  Auto_increment  NOT NULL ,
-        nom        Varchar (100) NOT NULL ,
-        prenom     Varchar (50) NOT NULL ,
-        adresse    Varchar (200) NOT NULL ,
-        id_contrat Int
+        id            Int  Auto_increment  NOT NULL ,
+        nom           Varchar (100) NOT NULL ,
+        prenom        Varchar (50) NOT NULL ,
+        adresse       Varchar (200) NOT NULL ,
+        id_conseiller Int
 	,CONSTRAINT client_PK PRIMARY KEY (id)
 
-	,CONSTRAINT client_contrat_FK FOREIGN KEY (id_contrat) REFERENCES contrat(id)
+	,CONSTRAINT client_conseiller_FK FOREIGN KEY (id_conseiller) REFERENCES conseiller(id)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: conseiller
+# Table: contrat
 #------------------------------------------------------------
 
-CREATE TABLE conseiller(
-        id        Int  Auto_increment  NOT NULL ,
-        nom       Varchar (100) NOT NULL ,
-        prenom    Varchar (50) NOT NULL ,
-        id_client Int
-	,CONSTRAINT conseiller_PK PRIMARY KEY (id)
+CREATE TABLE contrat(
+        id         Int  Auto_increment  NOT NULL ,
+        mensualite Float NOT NULL ,
+        type       Varchar (50) NOT NULL ,
+        date_debut Datetime NOT NULL ,
+        date_fin   Datetime NOT NULL ,
+        id_client  Int
+	,CONSTRAINT contrat_PK PRIMARY KEY (id)
 
-	,CONSTRAINT conseiller_client_FK FOREIGN KEY (id_client) REFERENCES client(id)
+	,CONSTRAINT contrat_client_FK FOREIGN KEY (id_client) REFERENCES client(id)
 )ENGINE=InnoDB;
 
