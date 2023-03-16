@@ -1,18 +1,20 @@
 package isen.group1.api.assurance.data.entity;
 
 import java.io.Serializable;
-import java.util.List;
-
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ClientEntity implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String nom;
 	private String prenom;
 	private String adresse;
-	private List<ContratEntity> contrats;
+	private Integer idConseiller;
 
 	/**
 	 * @return the id
@@ -21,13 +23,16 @@ public class ClientEntity implements Serializable {
 		return this.id;
 	}
 
-	public List<ContratEntity> getContrats() {
-		return contrats;
+
+	public Integer getIdConseiller() {
+		return idConseiller;
 	}
 
-	public void setContrats(List<ContratEntity> contrats) {
-		this.contrats = contrats;
+
+	public void setIdConseiller(Integer idConseiller) {
+		this.idConseiller = idConseiller;
 	}
+
 
 	/**
 	 * @param id the id to set

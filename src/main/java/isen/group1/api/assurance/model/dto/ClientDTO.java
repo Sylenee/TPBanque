@@ -1,16 +1,20 @@
 package isen.group1.api.assurance.model.dto;
 
 import java.io.Serializable;
-
 import isen.group1.api.assurance.data.entity.ClientEntity;
 
 
 public class ClientDTO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String nom;
 	private String prenom;
 	private String adresse;
+	private Integer idConseiller;
 
 	public ClientDTO() {
 		super();
@@ -20,6 +24,7 @@ public class ClientDTO implements Serializable {
 		this.nom = clientEntity.getNom();
 		this.prenom = clientEntity.getPrenom();
 		this.adresse = clientEntity.getAdresse();
+		this.idConseiller = clientEntity.getIdConseiller();
 	}
 
 	public ClientEntity toEntity(){
@@ -28,7 +33,15 @@ public class ClientDTO implements Serializable {
 		clientEntity.setNom(nom);
 		clientEntity.setPrenom(prenom);
 		clientEntity.setAdresse(adresse);
+		clientEntity.setIdConseiller(idConseiller);
 		return clientEntity;
+	}
+
+	public Integer getIdConseiller() {
+		return idConseiller;
+	}
+	public void setIdConseiller(Integer idConseiller) {
+		this.idConseiller = idConseiller;
 	}
 	/**
 	 * @return the id
@@ -84,6 +97,12 @@ public class ClientDTO implements Serializable {
 	 */
 	public void setAdresse(final String adresse) {
 		this.adresse = adresse;
+	}
+	
+	@Override
+	public String toString() {
+		return "ClientDTO [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse
+				+ ", idConseiller=" + idConseiller + "]";
 	}
 
 }
