@@ -28,7 +28,7 @@ public class ConseillerController {
     @DeleteMapping("/{idConseiller}/supprimer/client/{idClient}")
     public ResponseEntity<Object> createClient(@PathVariable("idConseiller")Integer idConseiller, @PathVariable("idClient")Integer idClient) {
         conseillerService.deleteClient(idConseiller, idClient);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
     @PutMapping("/{idConseiller}/modifier/client/{idClient}")
@@ -41,15 +41,11 @@ public class ConseillerController {
     public ResponseEntity<ContratDTO> updateContrat(@RequestBody ContratDTO contrat, @PathVariable("idcontrat") Integer idcontrat) {
         contrat.setId(idcontrat);
         ContratDTO contratDTO = this.conseillerService.updateContrat(contrat);
-        //this.conseillerService.updateContrat(contratId, contrat);
         return ResponseEntity.status(HttpStatus.OK).body(contrat);
     }
 
     @PostMapping("/ajouter/contrat/{idclient}")
     public ResponseEntity<ContratDTO> ajouterContrat(@RequestBody ContratDTO contrat, @PathVariable("idclient") Integer idclient) {
-        // Ajouter le contrat dans la base de donnée
-        // Id client à fournir en paramètre
-        // Renvoie une réponse 201 created avec le contrat créé dans la réponse
         contrat.setIdClient(idclient);
         ContratDTO contratDTO = this.conseillerService.ajouterContrat(contrat);
         contrat = contratDTO;
