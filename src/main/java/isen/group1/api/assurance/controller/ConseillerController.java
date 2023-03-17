@@ -45,7 +45,7 @@ public class ConseillerController {
     }
 
     @PostMapping("{idconseiller}/ajouter/contrat/{idclient}")
-    public ResponseEntity<ContratDTO> ajouterContrat(@RequestBody ContratDTO contrat, @PathVariable("idclient") Integer idclient,@PathVariable("idconseiller") Integer idConseiller) {
+    public ResponseEntity<ContratDTO> addContrat(@RequestBody ContratDTO contrat, @PathVariable("idclient") Integer idclient,@PathVariable("idconseiller") Integer idConseiller) {
         contrat.setIdClient(idclient);
         ContratDTO contratDTO = this.conseillerService.ajouterContrat(contrat, idConseiller);
         contrat = contratDTO;

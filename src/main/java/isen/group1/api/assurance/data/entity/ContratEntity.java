@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @Setter
-@Table(name = "CONTRAT")
+@Table(name = "contrat")
 public class ContratEntity implements Serializable {
 
     @Serial

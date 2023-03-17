@@ -8,6 +8,6 @@ import java.util.List;
 @Repository
 public interface ClientRepositoryJDBC {
 
-    public List<ContratDTO> getAllContratsFromClientID(int id);
-    public ContratDTO getOneContratFromClientID(int idClient, int idContrat);
+    List<ContratDTO> getAllContratsFromClientID(int id);
+    ContratDTO getOneContratFromClientID(int idClient, int idContrat);
 }

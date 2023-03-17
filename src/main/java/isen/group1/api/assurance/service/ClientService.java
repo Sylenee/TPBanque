@@ -5,6 +5,6 @@ import isen.group1.api.assurance.model.dto.ContratDTO;
 
 public interface ClientService {
 
-	public List<ContratDTO> getAllContratsFromClientID(int id);
-	public ContratDTO getOneContratFromClientID(int idClient, int idContrat);
+	List<ContratDTO> getAllContratsFromClientID(int id);
+	ContratDTO getOneContratFromClientID(int idClient, int idContrat);
 }

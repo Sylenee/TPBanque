@@ -9,11 +9,11 @@ import java.util.List;
 
 @Service
 public interface ConseillerService {
-    public List<ClientDTO> getListClient(int idConseiller);
-    public void deleteClient(int idConseiller, int idClient);
-    public void updateClient(int idConseiller, ClientDTO clientModif, int idClient);
-    public List<ClientDTO> getListClientFromConseiller(int idConseiller);
-    public ContratDTO ajouterContrat(ContratDTO contrat, int idConseiller);
+    List<ClientDTO> getListClient(int idConseiller);
+    void deleteClient(int idConseiller, int idClient);
+    void updateClient(int idConseiller, ClientDTO clientModif, int idClient);
+    List<ClientDTO> getListClientFromConseiller(int idConseiller);
+    ContratDTO ajouterContrat(ContratDTO contrat, int idConseiller);
     ContratDTO updateContrat(Integer idcontrat, ContratDTO contrat, Integer idConseiller);
     ClientDTO ajouterClient(ClientDTO clientDTO);
 }
