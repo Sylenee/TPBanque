@@ -3,13 +3,13 @@
 ## Contributeurs
 
 
-| Nom Prénom        | classe  |
-|-------------------|---------|
-| Morreau Sylène    | M2-GL   |
-| Gouyet Thomas     | M2-GL   |
-| Lidstorm Henrick  | M2-GL   |
-| Guillarmou Mathis | CIPA-GL |
-| Le Duot Nathan    | CIPA-GL |
+| Nom Prénom         | classe  |
+|--------------------|---------|
+| Morreau Sylène     | M2-GL   |
+| Gouyet Thomas      | M2-GL   |
+| Lidstrom Henrik    | M2-GL   |
+| Guillarmou Mathis  | CIPA-GL |
+| Le Duot Nathan     | CIPA-GL |
 
 ## Base de donnée
 
@@ -21,18 +21,17 @@
 
 ### Tables
 
+**Conseiller**
+- id        Int  Auto_increment
+- nom       Varchar (100)
+- prenom    Varchar (50)
+
 **client**
 - id         Int  Auto_increment
 - nom        Varchar (100)
 - prenom     Varchar (50)
 - adresse    Varchar (200)
-- id_contrat Int
-
-**Conseiller**
-- id        Int  Auto_increment
-- nom       Varchar (100)
-- prenom    Varchar (50)
-- id_client Int
+- id_conseiller Int
 
 **contrat**
 - id         Int  Auto_increment
@@ -40,3 +39,4 @@
 - type       Varchar (50)
 - date_debut Datetime
 - date_fin   Datetime
+- id_client  Int

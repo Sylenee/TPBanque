@@ -1,25 +1,26 @@
 package isen.group1.api.assurance.model.dto;
 
 import java.io.Serializable;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.stereotype.Repository;
 import isen.group1.api.assurance.data.entity.ClientEntity;
 import isen.group1.api.assurance.data.entity.ContratEntity;
 
 
 
-
+@Repository
 public class ClientDTO implements Serializable {
 
 	/**
-	 *
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String nom;
-
 	private String prenom;
-
 	private String adresse;
 	private Integer idConseiller;
+
 	public ClientDTO() {
 		super();
 	}
