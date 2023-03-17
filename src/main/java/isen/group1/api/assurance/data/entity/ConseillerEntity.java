@@ -1,22 +1,22 @@
 package isen.group1.api.assurance.data.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import isen.group1.api.assurance.model.dto.ConseillerDTO;
+import isen.group1.api.assurance.model.dto.ContratDTO;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Table(name = "conseiller")
 @Getter
+@Entity
 @Setter
-@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class ConseillerEntity {
 
+    @Id
     @Column(name = "id")
-    private Integer idConseiller;
+    private int idConseiller = -1;
 
     @Column(name = "nom")
     private String nom;
@@ -26,5 +26,12 @@ public class ConseillerEntity {
 
     @Column(name = "id_client")
     private String idClient;
-
+    public ConseillerDTO toDto() {
+        ConseillerDTO contratDTO = new ConseillerDTO();
+        contratDTO.setIdConseiller(getIdConseiller());
+        contratDTO.setNom(getNom());
+        contratDTO.setPrenom(getPrenom());
+        contratDTO.setIdClient(getIdClient());
+        return contratDTO;
+    }
 }

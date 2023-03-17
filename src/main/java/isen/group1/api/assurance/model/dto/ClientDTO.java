@@ -4,47 +4,37 @@ import java.io.Serializable;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Repository;
 import isen.group1.api.assurance.data.entity.ClientEntity;
+import isen.group1.api.assurance.data.entity.ContratEntity;
+
+
 
 @Repository
-@EnableAspectJAutoProxy
 public class ClientDTO implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
+	private Integer id;
 	private String nom;
 	private String prenom;
 	private String adresse;
-	private int idConseiller;
+	private Integer idConseiller;
 
 	public ClientDTO() {
-
+		super();
 	}
-	public ClientDTO(int id, String nom, String prenom, String adresse, int idConseiller) {
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.adresse = adresse;
-		this.idConseiller = idConseiller;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public ClientDTO(final ClientEntity clientEntity) {
+		this.id = clientEntity.getId();
+		this.nom = clientEntity.getNom();
+		this.prenom = clientEntity.getPrenom();
+		this.adresse = clientEntity.getAdresse();
+		this.idConseiller = clientEntity.getIdConseiller();
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
-	public void setIdConseiller(int idConseiller) {
-		this.idConseiller = idConseiller;
-	}
-
-	public ClientEntity toEntity(){
+    public ClientEntity toEntity(){
 		ClientEntity clientEntity = new ClientEntity();
-		clientEntity.setId(id);
 		clientEntity.setNom(nom);
 		clientEntity.setPrenom(prenom);
 		clientEntity.setAdresse(adresse);
@@ -113,7 +103,6 @@ public class ClientDTO implements Serializable {
 	public void setAdresse(final String adresse) {
 		this.adresse = adresse;
 	}
-	
 	@Override
 	public String toString() {
 		return "ClientDTO [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse

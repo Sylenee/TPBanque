@@ -2,13 +2,21 @@ package isen.group1.api.assurance.model.dto;
 
 import isen.group1.api.assurance.data.entity.ContratEntity;
 
-import javax.persistence.Column;
 import java.io.Serializable;
 import java.sql.Timestamp;
-
 public class ContratDTO implements Serializable {
 
     private Integer id;
+
+    public ContratDTO(ContratEntity contratEntity) {
+        ContratDTO contratDTO = new ContratDTO();
+        this.id = contratEntity.getId();
+        this.mensualite = contratEntity.getMensualite();
+        this.type = contratEntity.getType();
+        this.dateDebut = contratEntity.getDateDebut();
+        this.dateFin = contratEntity.getDateFin();
+        this.idClient = contratEntity.getClientId();
+    }
 
     public Integer getIdClient() {
         return idClient;

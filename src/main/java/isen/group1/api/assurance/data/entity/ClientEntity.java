@@ -1,86 +1,44 @@
 package isen.group1.api.assurance.data.entity;
 
 import java.io.Serializable;
-import org.springframework.stereotype.Repository;
 
-@Repository
+import isen.group1.api.assurance.model.dto.ClientDTO;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Table(name = "client")
+@Entity
+@NoArgsConstructor
+@Getter
+@Setter
 public class ClientEntity implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	private Integer id;
+	@Column(name = "id")
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	@Column(name = "nom")
 	private String nom;
+	@Column(name = "prenom")
+
 	private String prenom;
+	@Column(name = "adresse")
+
 	private String adresse;
-	private Integer idConseiller;
+	@Column(name = "id_conseiller")
+	private int idConseiller = -1;
 
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return this.id;
+	public ClientDTO toDto() {
+		ClientDTO clientDTO = new ClientDTO();
+		clientDTO.setIdConseiller(getIdConseiller());
+		clientDTO.setNom(getNom());
+		clientDTO.setPrenom(getPrenom());
+		clientDTO.setId(getId());
+		clientDTO.setAdresse(getAdresse());
+		return clientDTO;
 	}
-
-
-	public Integer getIdConseiller() {
-		return idConseiller;
-	}
-
-
-	public void setIdConseiller(Integer idConseiller) {
-		this.idConseiller = idConseiller;
-	}
-
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(final Integer id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the nom
-	 */
-	public String getNom() {
-		return this.nom;
-	}
-
-	/**
-	 * @param nom the nom to set
-	 */
-	public void setNom(final String nom) {
-		this.nom = nom;
-	}
-
-	/**
-	 * @return the prenom
-	 */
-	public String getPrenom() {
-		return this.prenom;
-	}
-
-	/**
-	 * @param prenom the prenom to set
-	 */
-	public void setPrenom(final String prenom) {
-		this.prenom = prenom;
-	}
-
-	/**
-	 * @return the adresse
-	 */
-	public String getAdresse() {
-		return this.adresse;
-	}
-
-	/**
-	 * @param adresse the adresse to set
-	 */
-	public void setAdresse(final String adresse) {
-		this.adresse = adresse;
-	}
-
 }
