@@ -7,4 +7,5 @@ public interface ClientService {
 
 	public List<ContratDTO> getAllContratsFromClientID(int id);
 	public ContratDTO getOneContratFromClientID(int idClient, int idContrat);
+	public boolean isAexistingClient(int id);
 }
