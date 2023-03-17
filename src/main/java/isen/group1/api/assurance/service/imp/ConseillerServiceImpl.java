@@ -4,6 +4,7 @@ import isen.group1.api.assurance.data.repository.jpa.ClientRepositoryJPA;
 import isen.group1.api.assurance.data.repository.jpa.ContratRepositoryJPA;
 import isen.group1.api.assurance.model.dto.ClientDTO;
 import isen.group1.api.assurance.model.dto.ContratDTO;
+import isen.group1.api.assurance.service.ClientService;
 import isen.group1.api.assurance.service.ConseillerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ public class ConseillerServiceImpl implements ConseillerService {
     private ContratRepositoryJPA contratRepositoryJPA;
     @Autowired
     private ClientRepositoryJPA clientRepository;
+    @Autowired
+    ClientService clientService;
 
     @Override
     public List<ClientDTO> getListClient(int idConseiller) {
@@ -41,9 +44,14 @@ public class ConseillerServiceImpl implements ConseillerService {
     @Override
     public void deleteClient(int idConseiller, int idClient) {
         List<ClientDTO> listClientConseille = getListClient(idConseiller);
+        List<ContratDTO> listContrats = this.clientService.getAllContratsFromClientID(idClient);
         for (ClientDTO c : listClientConseille) {
-            if (c.getId() == idClient)
+            if (c.getId() == idClient) {
+                for (ContratDTO contrat : listContrats) {
+                    this.contratRepositoryJPA.deleteById(contrat.getId());
+                }
                 this.clientRepository.deleteById(idClient);
+            }
         }
     }
 
