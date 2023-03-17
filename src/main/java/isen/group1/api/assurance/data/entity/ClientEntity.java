@@ -2,6 +2,7 @@ package isen.group1.api.assurance.data.entity;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import isen.group1.api.assurance.model.dto.ClientDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class ClientEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Column(name = "id")
+	@JsonIgnore
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "nom")

@@ -21,31 +21,36 @@ public class ConseillerController {
     private ConseillerService conseillerService;
 
     @GetMapping("/{idConseiller}/listClient")
-    public ResponseEntity<List<ClientDTO>> getListClient(@PathVariable("idConseiller")Integer idConseiller) {
+    public ResponseEntity<List<ClientDTO>> getListClient(@PathVariable("idConseiller")Integer idConseiller) throws Exception{
         return ResponseEntity.status(HttpStatus.CREATED).body(conseillerService.getListClient(idConseiller));
     }
 
     @DeleteMapping("/{idConseiller}/supprimer/client/{idClient}")
-    public ResponseEntity<Object> deleteClient(@PathVariable("idConseiller")Integer idConseiller, @PathVariable("idClient")Integer idClient) {
+    public ResponseEntity<Object> deleteClient(@PathVariable("idConseiller")Integer idConseiller, @PathVariable("idClient")Integer idClient) throws Exception {
         conseillerService.deleteClient(idConseiller, idClient);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
+    @PostMapping("/{idConseiller}/ajouter/client")
+    public ResponseEntity<Object> addClient(@PathVariable("idConseiller")Integer idConseiller, @RequestBody ClientDTO newClient) throws Exception {
+        ClientDTO clientNew = conseillerService.ajouterClient(idConseiller, newClient);
+        return ResponseEntity.status(HttpStatus.CREATED).body(clientNew);
+    }
 
     @PutMapping("/{idConseiller}/modifier/client/{idClient}")
-    public ResponseEntity<ClientDTO> updateClient(@PathVariable("idConseiller")Integer idConseiller, @RequestBody ClientDTO clientModif,@PathVariable("idClient") Integer idClient) {
+    public ResponseEntity<ClientDTO> updateClient(@PathVariable("idConseiller")Integer idConseiller, @RequestBody ClientDTO clientModif,@PathVariable("idClient") Integer idClient) throws Exception {
         conseillerService.updateClient(idConseiller, clientModif, idClient);
         return ResponseEntity.status(HttpStatus.OK).body(clientModif);
     }
 
     @PutMapping("{idconseiller}/modifier/contrat/{idcontrat}")
-    public ResponseEntity<ContratDTO> updateContrat(@RequestBody ContratDTO contrat, @PathVariable("idcontrat") Integer idcontrat,@PathVariable("idconseiller") Integer idConseiller) {
+    public ResponseEntity<ContratDTO> updateContrat(@RequestBody ContratDTO contrat, @PathVariable("idcontrat") Integer idcontrat,@PathVariable("idconseiller") Integer idConseiller) throws Exception {
         contrat.setId(idcontrat);
         ContratDTO contratDTO = this.conseillerService.updateContrat(idcontrat, contrat, idConseiller);
         return ResponseEntity.status(HttpStatus.OK).body(contrat);
     }
 
     @PostMapping("{idconseiller}/ajouter/contrat/{idclient}")
-    public ResponseEntity<ContratDTO> addContrat(@RequestBody ContratDTO contrat, @PathVariable("idclient") Integer idclient,@PathVariable("idconseiller") Integer idConseiller) {
+    public ResponseEntity<ContratDTO> addContrat(@RequestBody ContratDTO contrat, @PathVariable("idclient") Integer idclient,@PathVariable("idconseiller") Integer idConseiller) throws Exception {
         contrat.setIdClient(idclient);
         ContratDTO contratDTO = this.conseillerService.ajouterContrat(contrat, idConseiller);
         contrat = contratDTO;
