@@ -10,6 +10,4 @@ import java.util.List;
 
 @Repository
 public interface ConseillerRepositoryJPA extends JpaRepository<ConseillerEntity, Integer> {
-    List<ClientDTO> findByIdConseiller(int idConseiller);
-
 }

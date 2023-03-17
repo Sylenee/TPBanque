@@ -32,7 +32,7 @@ public class ClientRepositoryImpl implements ClientRepositoryJDBC {
 	}
 
 	@Override
-	public boolean isAexistingClient(int id){
+	public boolean isExistingClient(int id){
 		String sql = "Select COUNT(*) from client WHERE id=?";
 		return this.jdbcTemplate.queryForObject(sql,Integer.class, id) == 1 ? true : false;
 	}

@@ -26,8 +26,8 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public boolean isAexistingClient(int id) {
-		return this.clientRepository.isAexistingClient(id);
+	public boolean isExistingClient(int id) {
+		return this.clientRepository.isExistingClient(id);
 	}
 
 }

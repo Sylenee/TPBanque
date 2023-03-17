@@ -20,7 +20,7 @@ public class ClientController {
 		
 	@GetMapping("/{client_id}/contrats")
 	public List<ContratDTO> GetContratsFromClient(@PathVariable("client_id") Integer idClient) throws Exception {
-		if(!clientService.isAexistingClient(idClient)){
+		if(!clientService.isExistingClient(idClient)){
 			throw new Exception("Client not found");
 		}
 		return clientService.getAllContratsFromClientID(idClient);
@@ -28,7 +28,7 @@ public class ClientController {
 	
 	@GetMapping("/{client_id}/contrats/{contrat_id}")
 	public ContratDTO GetOneContratsFromClient(@PathVariable("client_id") Integer idClient, @PathVariable("contrat_id") Integer idContrat) throws Exception {
-		if(!clientService.isAexistingClient(idClient)){
+		if(!clientService.isExistingClient(idClient)){
 			throw new Exception("Client not found");
 		}
 		return clientService.getOneContratFromClientID(idClient, idContrat);
