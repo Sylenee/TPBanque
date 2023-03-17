@@ -2,8 +2,6 @@ package isen.group1.api.assurance.model.dto;
 
 import isen.group1.api.assurance.data.entity.ContratEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 public class ContratDTO implements Serializable {
@@ -12,14 +10,6 @@ public class ContratDTO implements Serializable {
 
     public ContratDTO(ContratEntity contratEntity) {
         ContratDTO contratDTO = new ContratDTO();
-        /*
-        contratDTO.setId(contratEntity.getId());
-        contratDTO.setMensualite(contratEntity.getMensualite());
-        contratDTO.setType(contratEntity.getType());
-        contratDTO.setDateDebut(contratEntity.getDateDebut());
-        contratDTO.setDateFin(contratEntity.getDateFin());
-        contratDTO.setIdClient(contratEntity.getClientId());
-        return contratDTO;*/
         this.id = contratEntity.getId();
         this.mensualite = contratEntity.getMensualite();
         this.type = contratEntity.getType();

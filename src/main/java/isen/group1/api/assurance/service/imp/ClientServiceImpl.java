@@ -1,6 +1,6 @@
 package isen.group1.api.assurance.service.imp;
 
-import isen.group1.api.assurance.data.repository.ClientRepository;
+import isen.group1.api.assurance.data.repository.jdbc.impl.ClientRepositoryImpl;
 import isen.group1.api.assurance.model.dto.ContratDTO;
 import isen.group1.api.assurance.service.ClientService;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class ClientServiceImpl implements ClientService {
 
 	@Autowired
-	private ClientRepository clientRepository;
+	private ClientRepositoryImpl clientRepository;
 
 	@Override
 	public List<ContratDTO> getAllContratsFromClientID(int id){

@@ -1,7 +1,8 @@
-package isen.group1.api.assurance.data.repository;
+package isen.group1.api.assurance.data.repository.jdbc.impl;
 
 import java.util.List;
 
+import isen.group1.api.assurance.data.repository.jdbc.ClientRepositoryJDBC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,12 +11,12 @@ import org.springframework.stereotype.Repository;
 import isen.group1.api.assurance.model.dto.ContratDTO;
 
 @Repository
-public class ClientRepository implements ClientRepositoryInterface{
+public class ClientRepositoryImpl implements ClientRepositoryJDBC {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public ClientRepository() {
+	public ClientRepositoryImpl() {
 		super();
 	}
 

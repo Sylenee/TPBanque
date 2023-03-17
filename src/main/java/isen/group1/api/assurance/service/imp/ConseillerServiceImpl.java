@@ -1,7 +1,7 @@
 package isen.group1.api.assurance.service.imp;
 
-import isen.group1.api.assurance.data.repository.ClientRepository;
-import isen.group1.api.assurance.data.repository.ContratRepository;
+import isen.group1.api.assurance.data.repository.jpa.ClientRepositoryJPA;
+import isen.group1.api.assurance.data.repository.jpa.ContratRepositoryJPA;
 import isen.group1.api.assurance.model.dto.ClientDTO;
 import isen.group1.api.assurance.model.dto.ContratDTO;
 import isen.group1.api.assurance.service.ConseillerService;
@@ -16,9 +16,9 @@ import java.util.stream.Collectors;
 public class ConseillerServiceImpl implements ConseillerService {
 
     @Autowired
-    private ContratRepository contratRepository;
+    private ContratRepositoryJPA contratRepositoryJPA;
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientRepositoryJPA clientRepository;
 
     @Override
     public List<ClientDTO> getListClient(int idConseiller) {
@@ -69,14 +69,14 @@ public class ConseillerServiceImpl implements ConseillerService {
         ContratDTO newContrat = null;
         for (ClientDTO c : listClientConseille) {
             if (c.getId() == contrat.getIdClient()) {
-                if (this.contratRepository.findById(contratId).isPresent() && contratId.equals(contrat.getId())) {
-                    contratDTO = this.contratRepository.findById(contratId).get().toDto();
+                if (this.contratRepositoryJPA.findById(contratId).isPresent() && contratId.equals(contrat.getId())) {
+                    contratDTO = this.contratRepositoryJPA.findById(contratId).get().toDto();
                 }
                 contratDTO.setId(contrat.getId());
                 contratDTO.setMensualite(contrat.getMensualite());
                 contratDTO.setDateDebut(contrat.getDateDebut());
                 contratDTO.setDateFin(contrat.getDateFin());
-                newContrat = this.contratRepository.save(contratDTO.toEntity()).toDto();
+                newContrat = this.contratRepositoryJPA.save(contratDTO.toEntity()).toDto();
 
             }
         }
@@ -88,7 +88,7 @@ public class ConseillerServiceImpl implements ConseillerService {
         ContratDTO newContrat = null;
         for (ClientDTO c : listClientConseille) {
             if (c.getId() == contrat.getIdClient())
-                newContrat = this.contratRepository.save(contrat.toEntity()).toDto();
+                newContrat = this.contratRepositoryJPA.save(contrat.toEntity()).toDto();
         }
         return newContrat;
 
