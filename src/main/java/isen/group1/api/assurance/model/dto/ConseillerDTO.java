@@ -1,21 +1,22 @@
 package isen.group1.api.assurance.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import isen.group1.api.assurance.data.entity.ConseillerEntity;
+import isen.group1.api.assurance.data.entity.ContratEntity;
+import lombok.*;
+
+import javax.persistence.*;
+
 import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
-import lombok.ToString;
+import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
 @Getter
 @Setter
-@AllArgsConstructor
+@NoArgsConstructor
 @ToString
-public class ConseillerDTO {
+public class ConseillerDTO implements Serializable {
 
     private Integer idConseiller;
 
@@ -24,5 +25,12 @@ public class ConseillerDTO {
     private String prenom;
 
     private String idClient;
-
+    public ConseillerEntity toEntity() {
+        ConseillerEntity contratEntity = new ConseillerEntity();
+        contratEntity.setIdConseiller(idConseiller);
+        contratEntity.setIdClient(idClient);
+        contratEntity.setNom(nom);
+        contratEntity.setPrenom(prenom);
+        return contratEntity;
+    }
 }

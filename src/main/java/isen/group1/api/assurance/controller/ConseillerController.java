@@ -1,11 +1,9 @@
 package isen.group1.api.assurance.controller;
 
 
-import isen.group1.api.assurance.data.entity.ClientEntity;
 import isen.group1.api.assurance.model.dto.ClientDTO;
 import isen.group1.api.assurance.model.dto.ContratDTO;
 import isen.group1.api.assurance.service.ConseillerService;
-import isen.group1.api.assurance.service.imp.ConseillerServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,38 +18,36 @@ import java.util.List;
 public class ConseillerController {
 
     @Autowired
-        private ConseillerService conseillerService;
+    private ConseillerService conseillerService;
 
-    @GetMapping("/listClient")
-    public List<ClientDTO> getListClient() {
-        return conseillerService.getListClient();
+    @GetMapping("/{idConseiller}/listClient")
+    public ResponseEntity<List<ClientDTO>> getListClient(@PathVariable("idConseiller")Integer idConseiller) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(conseillerService.getListClient(idConseiller));
     }
 
-    @PostMapping("/supprimer/client/{i}")
-    public String createClient(int i) {
-        return conseillerService.deleteClient(i);
+    @DeleteMapping("/{idConseiller}/supprimer/client/{idClient}")
+    public ResponseEntity<Object> deleteClient(@PathVariable("idConseiller")Integer idConseiller, @PathVariable("idClient")Integer idClient) {
+        conseillerService.deleteClient(idConseiller, idClient);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
-    @PutMapping("/modifier/client/{i}")
-    public ClientDTO updateClient(int i) {
-        return conseillerService.updateClient(i);
+    @PutMapping("/{idConseiller}/modifier/client/{idClient}")
+    public ResponseEntity<ClientDTO> updateClient(@PathVariable("idConseiller")Integer idConseiller, @RequestBody ClientDTO clientModif,@PathVariable("idClient") Integer idClient) {
+        conseillerService.updateClient(idConseiller, clientModif, idClient);
+        return ResponseEntity.status(HttpStatus.OK).body(clientModif);
     }
 
-    @PutMapping("/modifier/contrat/{idcontrat}")
-    public ResponseEntity<ContratDTO> updateContrat(@RequestBody ContratDTO contrat, @PathVariable("idcontrat") Integer idcontrat) {
+    @PutMapping("{idconseiller}/modifier/contrat/{idcontrat}")
+    public ResponseEntity<ContratDTO> updateContrat(@RequestBody ContratDTO contrat, @PathVariable("idcontrat") Integer idcontrat,@PathVariable("idconseiller") Integer idConseiller) {
         contrat.setId(idcontrat);
-        ContratDTO contratDTO = this.conseillerService.updateContrat(contrat);
-        //this.conseillerService.updateContrat(contratId, contrat);
+        ContratDTO contratDTO = this.conseillerService.updateContrat(idcontrat, contrat, idConseiller);
         return ResponseEntity.status(HttpStatus.OK).body(contrat);
     }
 
-    @PostMapping("/ajouter/contrat/{idclient}")
-    public ResponseEntity<ContratDTO> ajouterContrat(@RequestBody ContratDTO contrat, @PathVariable("idclient") Integer idclient) {
-        // Ajouter le contrat dans la base de donnée
-        // Id client à fournir en paramètre
-        // Renvoie une réponse 201 created avec le contrat créé dans la réponse
+    @PostMapping("{idconseiller}/ajouter/contrat/{idclient}")
+    public ResponseEntity<ContratDTO> ajouterContrat(@RequestBody ContratDTO contrat, @PathVariable("idclient") Integer idclient,@PathVariable("idconseiller") Integer idConseiller) {
         contrat.setIdClient(idclient);
-        ContratDTO contratDTO = this.conseillerService.ajouterContrat(contrat);
+        ContratDTO contratDTO = this.conseillerService.ajouterContrat(contrat, idConseiller);
         contrat = contratDTO;
         return ResponseEntity.status(HttpStatus.CREATED).body(contrat);
     }

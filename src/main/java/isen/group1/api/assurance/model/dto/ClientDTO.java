@@ -1,9 +1,14 @@
 package isen.group1.api.assurance.model.dto;
 
 import java.io.Serializable;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.stereotype.Repository;
 import isen.group1.api.assurance.data.entity.ClientEntity;
+import isen.group1.api.assurance.data.entity.ContratEntity;
 
 
+
+@Repository
 public class ClientDTO implements Serializable {
 
 	/**
@@ -27,9 +32,9 @@ public class ClientDTO implements Serializable {
 		this.idConseiller = clientEntity.getIdConseiller();
 	}
 
-	public ClientEntity toEntity(){
+
+    public ClientEntity toEntity(){
 		ClientEntity clientEntity = new ClientEntity();
-		clientEntity.setId(id);
 		clientEntity.setNom(nom);
 		clientEntity.setPrenom(prenom);
 		clientEntity.setAdresse(adresse);
@@ -98,7 +103,6 @@ public class ClientDTO implements Serializable {
 	public void setAdresse(final String adresse) {
 		this.adresse = adresse;
 	}
-	
 	@Override
 	public String toString() {
 		return "ClientDTO [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse

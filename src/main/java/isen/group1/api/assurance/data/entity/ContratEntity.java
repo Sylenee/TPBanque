@@ -1,6 +1,8 @@
 package isen.group1.api.assurance.data.entity;
 
 import isen.group1.api.assurance.model.dto.ContratDTO;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -8,6 +10,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "CONTRAT")
 public class ContratEntity implements Serializable {
 
@@ -28,14 +32,6 @@ public class ContratEntity implements Serializable {
     @Column(name ="id_client")
     private int clientId;
 
-    public int getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
     public ContratEntity() {
         // Constructeur par défaut
     }
@@ -47,48 +43,6 @@ public class ContratEntity implements Serializable {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.clientId = clientId;
-    }
-
-    // Getters et Setters pour chaque attribut
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public float getMensualite() {
-        return mensualite;
-    }
-
-    public void setMensualite(float mensualite) {
-        this.mensualite = mensualite;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Timestamp getDateDebut() {
-        return dateDebut;
-    }
-
-    public void setDateDebut(Timestamp dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public Timestamp getDateFin() {
-        return dateFin;
-    }
-
-    public void setDateFin(Timestamp dateFin) {
-        this.dateFin = dateFin;
     }
 
     public ContratDTO toDto() {
