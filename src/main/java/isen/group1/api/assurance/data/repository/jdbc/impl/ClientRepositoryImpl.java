@@ -20,20 +20,39 @@ public class ClientRepositoryImpl implements ClientRepositoryJDBC {
 	}
 
 	@Override
-	public List<ContratDTO> getAllContratsFromClientID(int id){
+	public List<ContratDTO> getAllContratsFromClientID(int id) throws Exception {
+		if(!isExistingClient(id)){
+			throw new Exception("Client with id : " + id + " not found");
+		}
 		String sql = "Select * from contrat WHERE id_client=?";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<ContratDTO>(ContratDTO.class), id);
 	}
 	
 	@Override
-	public ContratDTO getOneContratFromClientID(int idClient, int idContrat){
+	public ContratDTO getOneContratFromClientID(int idClient, int idContrat) throws Exception {
+		if(!isExistingClient(idClient)){
+			throw new Exception("Client with id : " + idClient + " not found");
+		}
+		if(!isExistingContrat(idContrat)){
+			throw new Exception("Contrat with id : " + idContrat + " not found");
+		}
 		String sql = "Select * from contrat WHERE id_client=? AND id=?";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<ContratDTO>(ContratDTO.class), idClient, idContrat).get(0);
+		List<ContratDTO> contrats = jdbcTemplate.query(sql, new BeanPropertyRowMapper<ContratDTO>(ContratDTO.class), idClient, idContrat);
+		if(contrats == null || contrats.isEmpty()){
+			throw new Exception("Le contrat : " + idContrat + " n'appartient pas au client : " + idClient);
+		}
+		return contrats.get(0);
 	}
 
 	@Override
 	public boolean isExistingClient(int id){
 		String sql = "Select COUNT(*) from client WHERE id=?";
+		return this.jdbcTemplate.queryForObject(sql,Integer.class, id) == 1 ? true : false;
+	}
+
+	@Override
+	public boolean isExistingContrat(int id){
+		String sql = "Select COUNT(*) from contrat WHERE id=?";
 		return this.jdbcTemplate.queryForObject(sql,Integer.class, id) == 1 ? true : false;
 	}
 

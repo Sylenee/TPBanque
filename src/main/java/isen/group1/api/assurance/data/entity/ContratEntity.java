@@ -1,8 +1,12 @@
 package isen.group1.api.assurance.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import isen.group1.api.assurance.model.dto.ContratDTO;
 import lombok.Getter;
 import lombok.Setter;
+import net.bytebuddy.asm.Advice;
+import org.springframework.data.annotation.ReadOnlyProperty;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -19,6 +23,7 @@ public class ContratEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+
     @Column(name = "id")
     private int id;
     @Column(name = "mensualite")

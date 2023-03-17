@@ -11,23 +11,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClientServiceImpl implements ClientService {
-
 	@Autowired
 	private ClientRepositoryImpl clientRepository;
-
+	
 	@Override
-	public List<ContratDTO> getAllContratsFromClientID(int id){
+	public List<ContratDTO> getAllContratsFromClientID(int id) throws Exception {
 		return this.clientRepository.getAllContratsFromClientID(id);
 	}
 
 	@Override
-	public ContratDTO getOneContratFromClientID(int idClient, int idContrat) {
+	public ContratDTO getOneContratFromClientID(int idClient, int idContrat) throws Exception {
 		return this.clientRepository.getOneContratFromClientID(idClient, idContrat);
 	}
-
-	@Override
-	public boolean isExistingClient(int id) {
-		return this.clientRepository.isExistingClient(id);
-	}
-
 }

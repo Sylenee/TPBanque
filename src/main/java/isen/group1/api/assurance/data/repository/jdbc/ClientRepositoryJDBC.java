@@ -8,7 +8,8 @@ import java.util.List;
 @Repository
 public interface ClientRepositoryJDBC {
 
-    public List<ContratDTO> getAllContratsFromClientID(int id);
-    public ContratDTO getOneContratFromClientID(int idClient, int idContrat);
+    public List<ContratDTO> getAllContratsFromClientID(int id) throws Exception;
+    public ContratDTO getOneContratFromClientID(int idClient, int idContrat) throws Exception;
     public boolean isExistingClient(int id);
+    public boolean isExistingContrat(int id);
 }

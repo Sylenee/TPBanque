@@ -1,11 +1,21 @@
 package isen.group1.api.assurance.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import isen.group1.api.assurance.data.entity.ContratEntity;
+import lombok.Getter;
+import lombok.Setter;
+import net.bytebuddy.implementation.bind.annotation.BindingPriority;
+import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+@Getter
+@Setter
 public class ContratDTO implements Serializable {
 
+    @Schema(readOnly = true)
     private Integer id;
 
     public ContratDTO(ContratEntity contratEntity) {
@@ -18,13 +28,6 @@ public class ContratDTO implements Serializable {
         this.idClient = contratEntity.getClientId();
     }
 
-    public Integer getIdClient() {
-        return idClient;
-    }
-
-    public void setIdClient(Integer idClient) {
-        this.idClient = idClient;
-    }
 
     private float mensualite;
     private String type;
@@ -45,45 +48,6 @@ public class ContratDTO implements Serializable {
         super();
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public float getMensualite() {
-        return mensualite;
-    }
-
-    public void setMensualite(float mensualite) {
-        this.mensualite = mensualite;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Timestamp getDateDebut() {
-        return dateDebut;
-    }
-
-    public void setDateDebut(Timestamp dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public Timestamp getDateFin() {
-        return dateFin;
-    }
-
-    public void setDateFin(Timestamp dateFin) {
-        this.dateFin = dateFin;
-    }
 
     public ContratEntity toEntity() {
         ContratEntity contratEntity = new ContratEntity();

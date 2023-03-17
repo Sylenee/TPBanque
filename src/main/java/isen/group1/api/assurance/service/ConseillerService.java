@@ -9,11 +9,11 @@ import java.util.List;
 
 @Service
 public interface ConseillerService {
-    List<ClientDTO> getListClient(int idConseiller);
-    void deleteClient(int idConseiller, int idClient);
-    void updateClient(int idConseiller, ClientDTO clientModif, int idClient);
+    List<ClientDTO> getListClient(int idConseiller) throws Exception;
+    void deleteClient(int idConseiller, int idClient) throws Exception;
+    void updateClient(int idConseiller, ClientDTO clientModif, int idClient) throws Exception;
     List<ClientDTO> getListClientFromConseiller(int idConseiller);
-    ContratDTO ajouterContrat(ContratDTO contrat, int idConseiller);
-    ContratDTO updateContrat(Integer idcontrat, ContratDTO contrat, Integer idConseiller);
-    ClientDTO ajouterClient(ClientDTO clientDTO);
+    ContratDTO ajouterContrat(ContratDTO contrat, int idConseiller) throws Exception;
+    ContratDTO updateContrat(Integer idcontrat, ContratDTO contrat, Integer idConseiller) throws Exception;
+    ClientDTO ajouterClient(int idConseiller, ClientDTO clientDTO) throws Exception;
 }
