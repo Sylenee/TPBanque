@@ -3,6 +3,8 @@ package isen.group1.api.assurance.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,18 +21,15 @@ public class ClientController {
 	ClientService clientService;
 		
 	@GetMapping("/{client_id}/contrats")
-	public List<ContratDTO> GetContratsFromClient(@PathVariable("client_id") Integer idClient) throws Exception {
-		if(!clientService.isExistingClient(idClient)){
-			throw new Exception("Client not found");
-		}
-		return clientService.getAllContratsFromClientID(idClient);
+	public ResponseEntity<List<ContratDTO>> GetContratsFromClient(@PathVariable("client_id") Integer idClient) throws Exception {
+		List<ContratDTO> listContrats = clientService.getAllContratsFromClientID(idClient);
+		return ResponseEntity.status(HttpStatus.CREATED).body(listContrats);
+
 	}
 	
 	@GetMapping("/{client_id}/contrats/{contrat_id}")
-	public ContratDTO GetOneContratsFromClient(@PathVariable("client_id") Integer idClient, @PathVariable("contrat_id") Integer idContrat) throws Exception {
-		if(!clientService.isExistingClient(idClient)){
-			throw new Exception("Client not found");
-		}
-		return clientService.getOneContratFromClientID(idClient, idContrat);
+	public ResponseEntity<ContratDTO> GetOneContratsFromClient(@PathVariable("client_id") Integer idClient, @PathVariable("contrat_id") Integer idContrat) throws Exception {
+		ContratDTO contrat = clientService.getOneContratFromClientID(idClient, idContrat);
+		return ResponseEntity.status(HttpStatus.CREATED).body(contrat);
 	}
 }

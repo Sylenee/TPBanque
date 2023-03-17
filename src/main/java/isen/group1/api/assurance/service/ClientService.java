@@ -5,7 +5,6 @@ import isen.group1.api.assurance.model.dto.ContratDTO;
 
 public interface ClientService {
 
-	public List<ContratDTO> getAllContratsFromClientID(int id);
-	public ContratDTO getOneContratFromClientID(int idClient, int idContrat);
-	public boolean isExistingClient(int id);
+	public List<ContratDTO> getAllContratsFromClientID(int id) throws Exception;
+	public ContratDTO getOneContratFromClientID(int idClient, int idContrat) throws Exception;
 }
