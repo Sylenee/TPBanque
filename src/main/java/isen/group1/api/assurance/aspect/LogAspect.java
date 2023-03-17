@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Aspect
 @Component
 public class LogAspect {
-
+/*
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     // Pointcut pour les méthodes de type GET dans les contrôleurs
@@ -121,5 +121,5 @@ public class LogAspect {
     private Object[] getArgumentsFromJoinPoint(JoinPoint joinPoint) {
         return joinPoint.getArgs();
     }
-
+*/
 }
