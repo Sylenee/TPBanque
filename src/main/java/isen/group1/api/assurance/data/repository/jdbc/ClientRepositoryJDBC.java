@@ -8,6 +8,7 @@ import java.util.List;
 @Repository
 public interface ClientRepositoryJDBC {
 
-    List<ContratDTO> getAllContratsFromClientID(int id);
-    ContratDTO getOneContratFromClientID(int idClient, int idContrat);
+    public List<ContratDTO> getAllContratsFromClientID(int id);
+    public ContratDTO getOneContratFromClientID(int idClient, int idContrat);
+    public boolean isAexistingClient(int id);
 }

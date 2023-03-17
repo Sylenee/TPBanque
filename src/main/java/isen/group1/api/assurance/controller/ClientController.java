@@ -19,12 +19,18 @@ public class ClientController {
 	ClientService clientService;
 		
 	@GetMapping("/{client_id}/contrats")
-	public List<ContratDTO> getContratsFromClient(@PathVariable("client_id") Integer idClient) {
+	public List<ContratDTO> GetContratsFromClient(@PathVariable("client_id") Integer idClient) throws Exception {
+		if(!clientService.isAexistingClient(idClient)){
+			throw new Exception("Client not found");
+		}
 		return clientService.getAllContratsFromClientID(idClient);
 	}
 	
 	@GetMapping("/{client_id}/contrats/{contrat_id}")
-	public ContratDTO getOneContratsFromClient(@PathVariable("client_id") Integer idClient, @PathVariable("contrat_id") Integer idContrat) {
+	public ContratDTO GetOneContratsFromClient(@PathVariable("client_id") Integer idClient, @PathVariable("contrat_id") Integer idContrat) throws Exception {
+		if(!clientService.isAexistingClient(idClient)){
+			throw new Exception("Client not found");
+		}
 		return clientService.getOneContratFromClientID(idClient, idContrat);
 	}
 }

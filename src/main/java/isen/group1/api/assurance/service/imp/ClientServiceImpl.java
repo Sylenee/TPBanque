@@ -25,4 +25,9 @@ public class ClientServiceImpl implements ClientService {
 		return this.clientRepository.getOneContratFromClientID(idClient, idContrat);
 	}
 
+	@Override
+	public boolean isAexistingClient(int id) {
+		return this.clientRepository.isAexistingClient(id);
+	}
+
 }

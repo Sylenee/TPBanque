@@ -32,4 +32,10 @@ public class ClientRepositoryImpl implements ClientRepositoryJDBC {
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<ContratDTO>(ContratDTO.class), idClient, idContrat).get(0);
 	}
 
+	@Override
+	public boolean isAexistingClient(int id){
+		String sql = "Select COUNT(*) from client WHERE id=?";
+		return this.jdbcTemplate.queryForObject(sql,Integer.class, id) == 1 ? true : false;
+	}
+
 }
